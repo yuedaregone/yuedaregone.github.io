@@ -5,6 +5,7 @@
 </head>
 <body>
 <div align="center">
+	<h1>世界上最美的</h1></br></br></br>
     <canvas id="c"></canvas>
 </div>
 <script type="text/javascript">
@@ -18,8 +19,8 @@ document.body.clientWidth;
 
 function get_rgb(a, b)
 {
-    var xx = a <= 1 ? 0 : a - 1;
-    var yy = b <= 1 ? 0 : (b - 1)*3;
+    var xx = b <= 1 ? 0 : b - 1;
+    var yy = a <= 1 ? 0 : (a - 1)*3;
     return "rgb("+xs[xx][yy]+","+xs[xx][yy+1]+","+xs[xx][yy+2]+")";
 }
 
