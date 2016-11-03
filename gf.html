@@ -1,0 +1,50 @@
+<html><head>
+<title>谁是最漂亮的人</title>
+<meta charset="utf-8" />
+<script type="text/javascript" src="pic.js"></script>
+</head> 
+<body>
+<div align="center">
+	<h1>↓↓↓世界上最漂亮的人↓↓↓</h1></br>
+    <canvas id="c"></canvas>
+</div>
+<script type="text/javascript">
+var b = document.body;
+var c = document.getElementById('c');
+var a = c.getContext('2d');
+var s = 50;
+c.width = width
+c.height = height
+document.body.clientWidth;
+
+function get_rgb(a, b)
+{
+    var xx = b <= 1 ? 0 : b - 1;
+    var yy = a <= 1 ? 0 : (a - 1)*3;
+    return "rgb("+xs[xx][yy]+","+xs[xx][yy+1]+","+xs[xx][yy+2]+")";
+}
+
+function draw_pic()
+{
+    for (var i = 0; i < 1000; i++)
+    {
+        var x=parseInt(Math.random()*width);
+        var y=parseInt(Math.random()*height);
+        a.fillStyle=get_rgb(x,y);
+        a.fillRect(x,y,s,s);
+    }
+}
+
+var intervalId;
+function reduce()
+{
+    s = s - 1;
+    if (s == 1)
+    {
+        self.clearInterval(intervalId);
+    }
+}
+self.setInterval('draw_pic()',0)
+intervalId=self.setInterval('reduce()',500)
+</script>
+</body></html>
