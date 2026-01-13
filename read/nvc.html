@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非暴力沟通知识图谱</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff9a9e, #fecfef);
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .card-content {
+            color: #555;
+            font-size: 1rem;
+        }
+        
+        .card-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .card-list li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            border-bottom: 1px solid #f8f9fa;
+        }
+        
+        .card-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .card-list li::before {
+            content: '❀';
+            position: absolute;
+            left: 0;
+            color: #ff9a9e;
+            font-size: 0.8rem;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .formula {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 18px;
+            border-radius: 12px;
+            margin: 18px 0;
+            border-left: 4px solid #ff9a9e;
+            font-style: italic;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #2c3e50;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+            padding: 16px 12px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: white;
+            border-radius: 12px;
+            font-weight: 500;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(255, 154, 158, 0.3);
+        }
+        
+        .step::after {
+            content: '→';
+            position: absolute;
+            right: -18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff9a9e;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        
+        .step:last-child::after {
+            display: none;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .violent {
+            color: #e74c3c;
+            font-weight: 500;
+        }
+        
+        .nonviolent {
+            color: #27ae60;
+            font-weight: 500;
+        }
+        
+        .footer {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 40px;
+            padding: 20px;
+            opacity: 0.8;
+        }
+        
+        .footer .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+            }
+            
+            .step::after {
+                content: '↓';
+                right: 50%;
+                top: 100%;
+                transform: translateX(50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>非暴力沟通知识图谱</h1>
+            <p class="subtitle">爱的语言 · 心与心的连接</p>
+        </div>
+        
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <div class="card-icon">1</div>
+                    核心理念
+                </div>
+                <div class="card-content">
+                    <p>非暴力沟通（NVC）由心理学家<span class="highlight">马歇尔·卢森堡</span>创立，是一种促进理解和同理心、减少冲突的沟通方式。</p>
+                    <div class="formula">
+                        NVC = 由衷的给予 + 坦诚的连接 + 富有同理心的理解
+                    </div>
+                    <p>其核心是学会以<span class="highlight">尊重和关怀的态度</span>表达自己，同时深入理解他人的需求和感受。</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <div class="card-icon">2</div>
+                    四要素沟通模式
+                </div>
+                <div class="card-content">
+                    <div class="process-steps">
+                        <div class="step">观察<br>Observation</div>
+                        <div class="step">感受<br>Feeling</div>
+                        <div class="step">需要<br>Need</div>
+                        <div class="step">请求<br>Request</div>
+                    </div>
+                    <p style="margin-top: 15px;">通过这四个步骤，穿透情绪迷雾，抵达需求本质，建立真诚的人际连接。</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <div class="card-icon">3</div>
+                    要素一：观察
+                </div>
+                <div class="card-content">
+                    <p><strong>像摄像机一样描述事实</strong>，不带任何评价或判断。</p>
+                    <ul class="card-list">
+                        <li><strong>原则：</strong>区分观察和评论</li>
+                        <li><strong>避免：</strong>"总是"、"从不"等绝对化评价</li>
+                        <li><strong>示例：</strong>"你这周迟到了两次" vs "你总是迟到"</li>
+                        <li><strong>关键：</strong>描述具体行为，而非人格评判</li>
+                    </ul>
+                    <p style="margin-top: 10px;">观察是<span class="highlight">客观陈述</span>，评论是主观判断。</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <div class="card-icon">4</div>
+                    要素二：感受
+                </div>
+                <div class="card-content">
+                    <p><strong>真诚表达情感反应</strong>，而非想法或评判。</p>
+                    <ul class="card-list">
+                        <li><strong>区分：</strong>感受 vs 想法</li>
+                        <li><strong>感受：</strong>"我感到担心"、"我觉得难过"</li>
+                        <li><strong>想法：</strong>"我觉得你不负责任"</li>
+                        <li><strong>丰富词汇：</strong>使用具体的情绪词汇</li>
+                    </ul>
+                    <p style="margin-top: 10px;">感受是<span class="highlight">内心的真实体验</span>，想法是头脑的判断分析。</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <div class="card-icon">5</div>
+                    要素三：需要
+                </div>
+                <div class="card-content">
+                    <p><strong>所有情绪背后都是对需求的呼唤</strong>。</p>
+                    <ul class="card-list">
+                        <li><strong>基本需求：</strong>尊重、安全、成长、连接</li>
+                        <li><strong>表达方式：</strong>"因为我需要..."</li>
+                        <li><strong>避免指责：</strong>直接表达需求而非批评</li>
+                        <li><strong>通用性：</strong>所有人的基本需求都是相同的</li>
+                    </ul>
+                    <p style="margin-top: 10px;">需要是<span class="highlight">人类共通的</span>，策略是多样的。</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <div class="card-icon">6</div>
+                    要素四：请求
+                </div>
+                <div class="card-content">
+                    <p><strong>提出具体、正向、可协商的行动建议</strong>。</p>
+                    <ul class="card-list">
+                        <li><strong>具体明确：</strong>清晰描述希望对方做什么</li>
+                        <li><strong>正向表达：</strong>关注想要的而非不想要的</li>
+                        <li><strong>可协商：</strong>给对方选择的空间</li>
+                        <li><strong>当下可行：</strong>请求是立即可以行动的</li>
+                    </ul>
+                    <p style="margin-top: 10px;">请求是<span class="highlight">邀请而非要求</span>，尊重对方的自主权。</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <div class="card-icon">7</div>
+                    沟通对比实例
+                </div>
+                <div class="card-content">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>场景</th>
+                                <th>暴力沟通</th>
+                                <th>非暴力沟通</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>工作进度</td>
+                                <td class="violent">"你最近工作怎么这么糟糕？"</td>
+                                <td class="nonviolent">"我注意到你的工作效率有所下降，这让我有些担心，因为我们的项目期限很紧。我想了解是否有什么困难需要帮助？"</td>
+                            </tr>
+                            <tr>
+                                <td>迟到问题</td>
+                                <td class="violent">"你总是迟到，太不负责任了！"</td>
+                                <td class="nonviolent">"我注意到你这周迟到了两次，我感到有些担心，因为我需要确保团队的工作效率。你愿意分享一下迟到的原因吗？"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <div class="card-icon">8</div>
+                    倾听的艺术
+                </div>
+                <div class="card-content">
+                    <p><strong>同理心倾听</strong>是NVC的核心技能。</p>
+                    <ul class="card-list">
+                        <li><strong>专注聆听：</strong>全身心投入，不打断对方</li>
+                        <li><strong>理解需要：</strong>听出话语背后的真实需求</li>
+                        <li><strong>反馈确认：</strong>复述对方的感受和需要</li>
+                        <li><strong>不急于解决：</strong>先理解，再寻求解决方案</li>
+                    </ul>
+                    <p style="margin-top: 10px;">真正的倾听是<span class="highlight">用心感受</span>，而非用脑分析。</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <div class="card-icon">9</div>
+                    自我同理
+                </div>
+                <div class="card-content">
+                    <p><strong>先与自己建立连接，才能与他人建立连接</strong>。</p>
+                    <ul class="card-list">
+                        <li><strong>自我觉察：</strong>识别自己的情绪状态</li>
+                        <li><strong>自我关怀：</strong>理解并接纳自己的感受</li>
+                        <li><strong>内在对话：</strong>用四要素与自己对话</li>
+                        <li><strong>情绪调节：</strong>通过理解需求来平复情绪</li>
+                    </ul>
+                    <p style="margin-top: 10px;">自我同理是<span class="highlight">与他人同理的基础</span>。</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <div class="card-icon">10</div>
+                    实践练习方法
+                </div>
+                <div class="card-content">
+                    <ul class="card-list">
+                        <li><strong>基础句型：</strong>"当我听到...时，我感到...，因为我需要...，你愿意...吗？"</li>
+                        <li><strong>从小事开始：</strong>在日常小事中练习四要素</li>
+                        <li><strong>角色扮演：</strong>与朋友练习常见冲突情境</li>
+                        <li><strong>反思总结：</strong>每次对话后思考如何改进</li>
+                        <li><strong>持续学习：</strong>通过书籍、课程深化理解</li>
+                    </ul>
+                    <p style="margin-top: 10px;">NVC需要<span class="highlight">持续练习</span>才能内化成为自然的表达方式。</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <div class="card-icon">11</div>
+                    应用场景
+                </div>
+                <div class="card-content">
+                    <p><strong>非暴力沟通适用于所有人际关系</strong>：</p>
+                    <ul class="card-list">
+                        <li><strong>家庭关系：</strong>夫妻、亲子、婆媳沟通</li>
+                        <li><strong>职场沟通：</strong>上下级、同事、客户交流</li>
+                        <li><strong>教育领域：</strong>师生、家校沟通</li>
+                        <li><strong>社会调解：</strong>冲突化解、和平谈判</li>
+                        <li><strong>自我成长：</strong>内在对话、情绪管理</li>
+                    </ul>
+                    <p style="margin-top: 10px;">NVC是一种<span class="highlight">普适的沟通语言</span>，适用于任何文化背景。</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <div class="card-icon">12</div>
+                    核心精神
+                </div>
+                <div class="card-content">
+                    <p><strong>非暴力沟通的最终目的不是改变他人，而是建立坦诚而富有同理心的连接</strong>。</p>
+                    <ul class="card-list">
+                        <li><strong>由衷给予：</strong>让给予自然发生</li>
+                        <li><strong>相互理解：</strong>超越对错的二元对立</li>
+                        <li><strong>共同成长：</strong>在关系中彼此滋养</li>
+                        <li><strong>和平解决：</strong>用理解化解冲突</li>
+                    </ul>
+                    <p style="margin-top: 10px;">NVC的核心是<span class="highlight">爱与理解的力量</span>。</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p class="quote">"让由衷的给予自然发生"</p>
+            <p>—— 马歇尔·卢森堡</p>
+        </div>
+    </div>
+</body>
+</html>
