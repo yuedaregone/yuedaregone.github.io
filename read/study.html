@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学习金字塔</title>
+<style>
+  :root{
+    --c-passive:#B0B9D7;          /* 被动学习主色 */
+    --c-active:#2ED573;           /* 主动学习主色 */
+    --c1:#6C63FF; --c2:#FF6584; --c3:#2ED573; 
+    --c4:#FFA502; var(--c5):#1E90FF;
+    --bg:#F8F9FC; --card:#FFFFFF; --text:#333; --mute:#7A7D8C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+  .container{
+    max-width:800px;
+    margin:0 auto;
+    padding:60px 20px;
+  }
+  header{
+    text-align:center;
+    margin-bottom:60px;
+  }
+  h1{
+    font-size:2.4em;
+    font-weight:700;
+    letter-spacing:-.5px;
+    margin-bottom:12px;
+  }
+  header p{
+    font-size:1.15em;
+    color:var(--mute);
+  }
+  .card{
+    background:var(--card);
+    border-radius:16px;
+    padding:40px;
+    margin-bottom:40px;
+    box-shadow:0 8px 30px rgba(0,0,0,.04);
+    transition:transform .3s;
+  }
+  .card:hover{transform:translateY(-4px);}
+  h2{
+    display:flex;
+    align-items:center;
+    font-size:1.5em;
+    margin-bottom:24px;
+  }
+  h2 .emoji{
+    font-size:1.3em;
+    margin-right:12px;
+  }
+
+  /* 七层列表：被动/主动分组 */
+  .level-group{
+    margin-bottom:32px;
+  }
+  .group-title{
+    font-size:1.1em;
+    font-weight:600;
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+  }
+  .group-title::before{
+    content:'';
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    margin-right:8px;
+  }
+  .passive .group-title{color:var(--c-passive);}
+  .passive .group-title::before{background:var(--c-passive);}
+  .active .group-title{color:var(--c-active);}
+  .active .group-title::before{background:var(--c-active);}
+
+  .level{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 18px;
+    margin:8px 0;
+    border-radius:10px;
+    font-weight:500;
+    transition:background .2s;
+  }
+  .level span:first-child{
+    font-size:1.05em;
+    display:flex;
+    align-items:center;
+  }
+  /* 列表原点统一 */
+  .level span:first-child::before{
+    content:'';
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    margin-right:12px;
+    flex-shrink:0;
+  }
+  .passive .level{background:#F3F5FE;}
+  .passive .level span:first-child::before{background:var(--c-passive);}
+  .active .level{background:#E8F9EF;}
+  .active .level span:first-child::before{background:var(--c-active);}
+  .level span:last-child{
+    font-size:1.25em;
+    font-weight:700;
+  }
+
+  .tip{
+    background:#EEF2FF;
+    border-left:4px solid var(--c1);
+    padding:16px 20px;
+    margin-top:24px;
+    border-radius:8px;
+    font-size:.95em;
+    color:var(--mute);
+  }
+  @media(max-width:600px){
+    h1{font-size:2em;}
+    .card{padding:28px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>学习金字塔 · 知识卡片</h1>
+    <p>不同学习方式的记忆留存率对比</p>
+  </header>
+
+  <!-- 七层学习方式：分组展示 -->
+  <section class="card">
+    <h2><span class="emoji">📊</span>七层学习方式与平均记忆留存率</h2>
+    
+    <!-- 被动学习 -->
+    <div class="level-group passive">
+      <div class="group-title">被动学习</div>
+      <div class="level">
+        <span>听讲（Lecture）</span>
+        <span>5%</span>
+      </div>
+      <div class="level">
+        <span>阅读（Reading）</span>
+        <span>10%</span>
+      </div>
+      <div class="level">
+        <span>视听（Audiovisual）</span>
+        <span>20%</span>
+      </div>
+      <div class="level">
+        <span>演示（Demonstration）</span>
+        <span>30%</span>
+      </div>
+    </div>
+
+    <!-- 主动学习 -->
+    <div class="level-group active">
+      <div class="group-title">主动学习</div>
+      <div class="level">
+        <span>讨论（Group Discussion）</span>
+        <span>50%</span>
+      </div>
+      <div class="level">
+        <span>实践（Practice by Doing）</span>
+        <span>75%</span>
+      </div>
+      <div class="level">
+        <span>教授他人（Teach Others）</span>
+        <span>90%</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2><span class="emoji">💡</span>关键启示</h2>
+    <ul>
+      <li>被动学习（听讲、阅读）效率最低，主动学习（实践、教授）效率最高</li>
+      <li>多感官参与可显著提升记忆：视听结合 > 单一阅读</li>
+      <li>输出式学习（教授他人）是巩固知识的最强手段</li>
+      <li>“学以致用”与“用以致学”形成闭环，知识留存率最高</li>
+    </ul>
+    <div class="tip">
+      提示：将所学内容立即教授给同伴或撰写笔记分享，可迅速把留存率从5%提升至90%。
+    </div>
+  </section>
+
+  <section class="card">
+    <h2><span class="emoji">🛠️</span>应用建议</h2>
+    <ul>
+      <li>学习新知：先快速阅读/听讲建立框架，再讨论、实践、输出</li>
+      <li>复习巩固：用思维导图或费曼技巧向他人讲解</li>
+      <li>团队培训：减少单向讲授，增加案例分析、角色扮演与分享环节</li>
+      <li>自我提升：建立“学习→实践→教授”循环，打造个人知识闭环</li>
+    </ul>
+  </section>
+
+  <div class="footer">
+    把知识讲给别人听，是最高效的学习方式。
+  </div>
+</div>
+
+</body>
+</html>
