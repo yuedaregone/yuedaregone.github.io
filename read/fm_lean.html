@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>费曼学习法</title>
+<style>
+  :root{
+    --c1:#6366F1; --c2:#10B981; --c3:#F59E0B; --c4:#EF4444;
+    --bg:#F5F7FA; --card:#FFFFFF; --text:#1F2937; --mute:#6B7280; --line:#E5E7EB;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+  .container{
+    max-width:900px;
+    margin:0 auto;
+    padding:60px 20px;
+  }
+  header{
+    text-align:center;
+    margin-bottom:60px;
+  }
+  h1{
+    font-size:2.8em;
+    font-weight:700;
+    letter-spacing:-.5px;
+    margin-bottom:12px;
+    background:linear-gradient(135deg,var(--c1),var(--c2));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  header>p{
+    font-size:1.2em;
+    color:var(--mute);
+    max-width:600px;
+    margin:0 auto;
+  }
+
+  /* 模块卡片 */
+  .module{
+    background:var(--card);
+    border-radius:20px;
+    padding:40px;
+    margin-bottom:40px;
+    box-shadow:0 10px 40px rgba(0,0,0,.06);
+    transition:transform .3s;
+  }
+  .module:hover{transform:translateY(-4px);}
+  .module-header{
+    display:flex;
+    align-items:center;
+    margin-bottom:28px;
+  }
+  .module-icon{
+    width:56px;
+    height:56px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.8em;
+    margin-right:20px;
+    flex-shrink:0;
+  }
+  .icon-1{background:var(--c1);color:#fff;}
+  .icon-2{background:var(--c2);color:#fff;}
+  .icon-3{background:var(--c3);color:#fff;}
+  .icon-4{background:var(--c4);color:#fff;}
+  .module-title h2{
+    font-size:1.6em;
+    margin-bottom:4px;
+  }
+  .module-title p{
+    font-size:0.95em;
+    color:var(--mute);
+  }
+
+  /* 四步合并 - 流程图 */
+  .flow-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:20px;
+    margin-top:20px;
+  }
+  .flow-card{
+    background:#F9FAFB;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:24px 16px;
+    text-align:center;
+    transition:all .3s;
+  }
+  .flow-card:hover{
+    border-color:var(--c1);
+    background:#F3F4F6;
+    transform:translateY(-3px);
+  }
+  .flow-num{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:var(--c1);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.2em;
+    font-weight:700;
+    margin:0 auto 12px;
+  }
+  .flow-name{
+    font-size:1.05em;
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .flow-desc{
+    font-size:0.88em;
+    color:var(--mute);
+    line-height:1.6;
+  }
+
+  /* 列表与引用 */
+  ul{list-style:none;padding-left:0;}
+  li{
+    position:relative;
+    padding-left:32px;
+    margin:10px 0;
+    font-size:0.94em;
+  }
+  li::before{
+    content:'';
+    position:absolute;
+    left:0;
+    top:.7em;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--c1);
+  }
+  .quote{
+    background:#F3F4F6;
+    border-left:4px solid var(--c1);
+    padding:16px 20px;
+    margin:20px 0;
+    border-radius:8px;
+    font-style:italic;
+    color:var(--mute);
+    font-size:0.9em;
+  }
+
+  /* 出处信息 */
+  .source{
+    text-align:center;
+    margin-top:48px;
+    padding:24px;
+    background:var(--card);
+    border-radius:14px;
+    box-shadow:0 4px 20px rgba(0,0,0,.05);
+  }
+  .source h3{
+    font-size:1.1em;
+    margin-bottom:8px;
+    color:var(--c1);
+  }
+  .source p{
+    font-size:0.9em;
+    color:var(--mute);
+    line-height:1.6;
+  }
+  
+  .footer {
+		text-align: center;
+		color: #2c3e50;
+		margin-top: 40px;
+		padding: 20px;
+		opacity: 0.8;
+	}	
+
+  @media(max-width:700px){
+    h1{font-size:2.2em;}
+    .module{padding:28px;}
+    .flow-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>费曼学习法</h1>
+    <p>以教代学，用输出倒逼输入，让知识真正长在心里</p>
+  </header>
+
+  <!-- ① 核心思想与原理 -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon icon-1">🎯</div>
+      <div class="module-title">
+        <h2>核心思想与原理</h2>
+        <p>区分“知道名称”与“理解事物”，用教学检验深度理解</p>
+      </div>
+    </div>
+    <ul>
+      <li>以教代学：通过“教学”输出巩固并检验“学习”输入；能否用简单语言让外行听懂是掌握知识的黄金标准。</li>
+      <li>主动学习高效：根据学习金字塔，“教给别人”知识吸收率高达90%，远高于被动听讲/阅读。</li>
+      <li>区分表面知识与深层知识：高效学习应追求真正理解事物本身，而非仅记住名称或定义。</li>
+    </ul>
+    <div class="quote">费曼技巧的本质是强迫你把模糊概念转化为简单语言，从而暴露理解漏洞。</div>
+  </div>
+
+  <!-- ② 四步核心流程（合并展示） -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon icon-2">🔄</div>
+      <div class="module-title">
+        <h2>四步核心流程</h2>
+        <p>Concept → Teach → Review → Simplify 循环迭代</p>
+      </div>
+    </div>
+    <div class="flow-grid">
+      <div class="flow-card">
+        <div class="flow-num">1</div>
+        <div class="flow-name">选择概念</div>
+        <div class="flow-desc">写下目标概念，明确边界，先画骨架再深入</div>
+      </div>
+      <div class="flow-card">
+        <div class="flow-num">2</div>
+        <div class="flow-name">模拟教学</div>
+        <div class="flow-desc">用孩子能懂的语言讲述，避免行话，暴露盲点</div>
+      </div>
+      <div class="flow-card">
+        <div class="flow-num">3</div>
+        <div class="flow-name">回顾补缺</div>
+        <div class="flow-desc">记录卡壳处→回炉重学→一分钟自述检验</div>
+      </div>
+      <div class="flow-card">
+        <div class="flow-num">4</div>
+        <div class="flow-name">简化内化</div>
+        <div class="flow-desc">提炼类比，60秒内讲清；让别人复述验证</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ 扩展应用与技巧 -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon icon-3">⚙️</div>
+      <div class="module-title">
+        <h2>扩展应用与技巧</h2>
+        <p>让四步流程高效落地的实用工具箱</p>
+      </div>
+    </div>
+    <ul>
+      <li>SMART目标：具体、可衡量、可实现、有意义、有时限，避免盲目学习。</li>
+      <li>可视化先行：用思维导图/概念图先建立知识框架，快速定位重点与盲区。</li>
+      <li>绿灯反馈：欢迎任何疑问，用“卡点”精准回炉，持续迭代。</li>
+      <li>类比迁移：将新知与已知、生活场景或其他领域联结，降低认知负荷。</li>
+      <li>以慢为快：深度吃透少数核心概念，胜过泛学大量表面信息。</li>
+    </ul>
+  </div>
+
+  <!-- ④ 适用范围与价值 -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon icon-4">🚀</div>
+      <div class="module-title">
+        <h2>适用范围与价值</h2>
+        <p>从理科公式到生活技能，普适且高效的元认知工具</p>
+      </div>
+    </div>
+    <ul>
+      <li>普适万能：理科公式、文科概念、语言、乐器、编程——任何领域皆可套用。</li>
+      <li>高效复习：考前用“费曼笔记”1分钟讲解法快速定位薄弱点，查漏补缺。</li>
+      <li>知识输出：读书后立即撰写“给新手看的总结”，巩固率提升50%以上。</li>
+      <li>元认知训练：持续练习可培养深度思考、结构化表达与成长型思维。</li>
+    </ul>
+    <div class="quote">最好的学，就是教；能让他人懂，自己就再也不会忘。</div>
+  </div>
+
+  <!-- 出处信息 -->
+  <div class="footer">    
+    <p>诺贝尔物理学奖得主理查德·费曼（Richard Feynman）<br></p>
+    
+  </div>
+</div>
+
+</body>
+</html>
