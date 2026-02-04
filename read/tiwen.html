@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学会提问 - 批判性思维知识卡片</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: #f8f9fa;
+            color: #2d3748;
+        }
+        .serif {
+            font-family: 'Noto Serif SC', serif;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .timeline-line {
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-left: 4px solid #667eea;
+        }
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .thinking-mode-sponge {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-top: 4px solid #0ea5e9;
+        }
+        .thinking-mode-gold {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-top: 4px solid #f59e0b;
+        }
+        .fallacy-card {
+            background: #fff5f5;
+            border-left: 4px solid #fc8181;
+        }
+        .evidence-card {
+            background: #f0fff4;
+            border-left: 4px solid #68d391;
+        }
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            z-index: 100;
+            transition: width 0.1s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Scroll Progress -->
+    <div class="scroll-indicator" id="scrollBar"></div>
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    问
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold serif text-gray-900">学会提问</h1>
+                    <p class="text-xs text-gray-500">Asking the Right Questions</p>
+                </div>
+            </div>
+            <div class="text-sm text-gray-500 hidden sm:block">批判性思维系统指南</div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-12 space-y-16">
+
+        <!-- Hero Section -->
+        <section class="text-center space-y-6 pt-8">
+            <div class="inline-block px-4 py-1 bg-indigo-50 text-indigo-700 rounded-full text-sm font-medium mb-4">
+                尼尔·布朗 × 斯图尔特·基利
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold serif gradient-text leading-tight">
+                学会提问
+            </h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                系统教授批判性思维的经典之作。通过一套环环相扣的提问方法，帮助你在信息洪流中主动筛选、评估观点，而非被动接受。
+            </p>
+            <div class="flex justify-center gap-4 pt-4">
+                <span class="px-4 py-2 bg-white rounded-full shadow-sm text-sm text-gray-600 border border-gray-100">评估技能</span>
+                <span class="px-4 py-2 bg-white rounded-full shadow-sm text-sm text-gray-600 border border-gray-100">主动筛选</span>
+                <span class="px-4 py-2 bg-white rounded-full shadow-sm text-sm text-gray-600 border border-gray-100">理性自主</span>
+            </div>
+        </section>
+
+        <!-- Core Definition -->
+        <section class="bg-white rounded-2xl shadow-lg p-8 md:p-10 card-hover">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold serif text-gray-900">批判性思维的本质</h3>
+            </div>
+            
+            <div class="highlight-box p-6 rounded-lg mb-8">
+                <p class="text-lg text-gray-800 leading-relaxed">
+                    批判性思维的本质是一种<span class="font-bold text-indigo-700">评估技能</span>，由三个维度激活：
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-100 text-center">
+                    <div class="text-3xl mb-3">💡</div>
+                    <h4 class="font-bold text-gray-900 mb-2">意识维度</h4>
+                    <p class="text-sm text-gray-600">意识到一套关键问题的存在</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-100 text-center">
+                    <div class="text-3xl mb-3">🎯</div>
+                    <h4 class="font-bold text-gray-900 mb-2">能力维度</h4>
+                    <p class="text-sm text-gray-600">有能力在适当时机提出并回答这些问题</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-100 text-center">
+                    <div class="text-3xl mb-3">🔥</div>
+                    <h4 class="font-bold text-gray-900 mb-2">意愿维度</h4>
+                    <p class="text-sm text-gray-600">有主动使用这些问题的强烈渴望</p>
+                </div>
+            </div>
+
+            <div class="mt-8 p-6 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl border border-indigo-100">
+                <div class="flex items-start">
+                    <span class="text-2xl mr-3">🔓</span>
+                    <div>
+                        <h4 class="font-bold text-indigo-900 mb-2">首要价值观：开放</h4>
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            意识到并尊重他人因成长背景不同而形成的价值观差异（如自由、公平、安全），避免因"价值观偏见"而忽视合理观点。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Two Thinking Modes -->
+        <section class="space-y-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold serif text-gray-900 mb-2">两种思维模式对比</h3>
+                <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Sponge -->
+                <div class="thinking-mode-sponge rounded-2xl shadow-md overflow-hidden card-hover">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-3">🧽</span>
+                            <h4 class="text-xl font-bold text-gray-900">海绵式思维</h4>
+                            <span class="ml-auto text-xs bg-white/50 text-blue-800 px-3 py-1 rounded-full font-medium">被动吸收</span>
+                        </div>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            像海绵吸水一样被动、全盘地吸收信息，强调知识获取的结果，但无法判断对错。
+                        </p>
+                        <div class="space-y-3 bg-white/40 p-4 rounded-lg">
+                            <div class="flex items-center text-sm text-gray-700">
+                                <span class="text-red-500 mr-2 font-bold">✗</span>
+                                <span>在AI时代更容易被误导</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-700">
+                                <span class="text-red-500 mr-2 font-bold">✗</span>
+                                <span>缺乏独立判断能力</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gold Panning -->
+                <div class="thinking-mode-gold rounded-2xl shadow-md overflow-hidden card-hover">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-3">⛏️</span>
+                            <h4 class="text-xl font-bold text-gray-900">淘金式思维</h4>
+                            <span class="ml-auto text-xs bg-white/50 text-amber-800 px-3 py-1 rounded-full font-medium">主动筛选</span>
+                        </div>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            像淘金一样主动与信息互动，边获取边质疑、筛选，强调获取知识的过程，是批判性思维的核心实践方式。
+                        </p>
+                        <div class="space-y-3 bg-white/40 p-4 rounded-lg">
+                            <div class="flex items-center text-sm text-gray-700">
+                                <span class="text-green-600 mr-2 font-bold">✓</span>
+                                <span>掌握主动权，形成独立判断</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-700">
+                                <span class="text-green-600 mr-2 font-bold">✓</span>
+                                <span>在信息洪流中筛选真金</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-types of Gold Panning -->
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h4 class="text-lg font-bold text-gray-900 mb-6 text-center">淘金式思维的两种形态</h4>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="border-l-4 border-red-400 pl-6 py-2">
+                        <div class="flex items-center mb-2">
+                            <h5 class="font-bold text-gray-900">弱势批判性思维</h5>
+                            <span class="ml-2 text-xs bg-red-50 text-red-600 px-2 py-1 rounded">防御性</span>
+                        </div>
+                        <p class="text-sm text-gray-600">用于捍卫自己原有的信念，只寻找支持自己观点的证据，容易陷入确认偏误。</p>
+                    </div>
+                    <div class="border-l-4 border-green-500 pl-6 py-2 bg-green-50/30 rounded-r-lg">
+                        <div class="flex items-center mb-2">
+                            <h5 class="font-bold text-gray-900">强势批判性思维</h5>
+                            <span class="ml-2 text-xs bg-green-100 text-green-700 px-2 py-1 rounded">开放性</span>
+                        </div>
+                        <p class="text-sm text-gray-600">用于评估所有断言和信念，包括修正自己的初始看法，真正追求真理。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ten Steps Title -->
+        <section class="text-center py-8">
+            <div class="inline-block px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full text-white font-bold text-lg shadow-lg">
+                核心方法论：拆解论证的十个关键问题
+            </div>
+            <p class="mt-4 text-gray-600">一套可操作的"提问清单"，系统性地拆解任何论证</p>
+        </section>
+
+        <!-- Step 1 -->
+        <section class="bg-white rounded-2xl shadow-lg p-8 card-hover">
+            <div class="flex items-start gap-6">
+                <div class="step-number">1</div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">论题和结论是什么？</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">分析的起点。必须首先明确讨论的核心问题（论题）和作者希望你接受的最终主张（结论）。</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                            <h4 class="font-bold text-blue-900 mb-2 text-sm">描述性论题</h4>
+                            <p class="text-sm text-blue-800">关于"是什么"的事实性问题</p>
+                            <p class="text-xs text-blue-600 mt-2 italic">例：双减政策能否减轻学生负担？</p>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg border border-purple-100">
+                            <h4 class="font-bold text-purple-900 mb-2 text-sm">规定性论题</h4>
+                            <p class="text-sm text-purple-800">关于"应该怎样"的价值判断</p>
+                            <p class="text-xs text-purple-600 mt-2 italic">例：学校是否应该取消考试？</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg text-sm text-gray-700">
+                        <span class="font-bold">识别线索：</span>因此、所以、表明、由此可知、我要说的重点是...
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="bg-white rounded-2xl shadow-lg p-8 card-hover">
+            <div class="flex items-start gap-6">
+                <div class="step-number">2</div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">理由是什么？</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">理由是支撑结论的解释、依据或逻辑，证据则是证明理由真实性的事实。<span class="font-bold text-red-600">没有理由的结论只是"断言"</span>。</p>
+                    <div class="bg-amber-50 border border-amber-200 p-4 rounded-lg">
+                        <p class="text-sm text-amber-900">分析时需要找出所有支撑结论的理由，并思考其逻辑关系。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 3 -->
+        <section class="bg-white rounded-2xl shadow-lg p-8 card-hover">
+            <div class="flex items-start gap-6">
+                <div class="step-number">3</div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">哪些词语意思不明确？</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">论证中的关键词（尤其是抽象词、饱含感情色彩的词）可能存在歧义，导致误解。必须明确这些词在具体语境中的准确定义。</p>
+                    <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-gray-400">
+                        <p class="text-sm text-gray-700"><span class="font-bold">示例：</span>"幸福感显著提升"中的"幸福感"和"显著"都需要清晰界定。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 4 -->
+        <section class="bg-white rounded-2xl shadow-lg p-8 card-hover">
+            <div class="flex items-start gap-6">
+                <div class="step-number">4</div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">什么是价值观假设和描述性假设？</h3>
+                    <p class="text-gray-600 mb-6">假设是论证中未明说、但作者认为是理所当然的前提，是论证的"隐形基石"。</p>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-indigo-50 p-5 rounded-lg border-l-4 border-indigo-500">
+                            <h4 class="font-bold text-indigo-900 mb-2">价值观假设</h4>
+                            <p class="text-sm text-indigo-800 mb-2">在特定情形下，认为某种价值观比另一种更重要的隐性偏向。</p>
+                            <p class="text-xs text-indigo-600 bg-white/50 p-2 rounded">例：主张"学校应取消考试"可能隐含着"学生情绪健康比检验学习效果更重要"的假设。</p>
+                        </div>
+                        <div class="bg-teal-50 p-5 rounded-lg border-l-4 border-teal-500">
+                            <h4 class="font-bold text-teal-900 mb-2">描述性假设</h4>
+                            <p class="text-sm text-teal-800 mb-2">关于世界过去、现在或未来是"怎么样"的没有说出来的想法。</p>
+                            <p class="text-xs text-teal-600 bg-white/50 p-2 rounded">例：认为"减少作业量就能减轻学生负担"，忽略了其他可能增加负担的因素。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 5 -->
+        <section class="bg-white rounded-2xl shadow-lg p-8 card-hover">
+            <div class="flex items-start gap-6">
+                <div class="step-number">5</div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">推理过程中有没有谬误？</h3>
+                    <p class="text-gray-600 mb-6">即使前提正确，推理过程也可能存在逻辑错误。常见谬误包括：</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="fallacy-card p-4 rounded-lg">
+                            <h5 class="font-bold text-red-800 text-sm mb-1">人身攻击</h5>
+                            <p class="text-xs text-gray-600">不反驳观点，而攻击持观点的人</p>
+                        </div>
+                        <div class="fallacy-card p-4 rounded-lg">
+                            <h5 class="font-bold text-red-800 text-sm mb-1">稻草人谬误</h5>
+                            <p class="text-xs text-gray-600">歪曲对方观点后再进行攻击</p>
+                        </div>
+                        <div class="fallacy-card p-4 rounded-lg">
+                            <h5 class="font-bold text-red-800 text-sm mb-1">滑坡谬误</h5>
+                            <p class="text-xs text-gray-600">认为小行为会必然导致灾难性后果</p>
+                        </div>
+                        <div class="fallacy-card p-4 rounded-lg">
+                            <h5 class="font-bold text-red-800 text-sm mb-1">诉诸公众</h5>
+                            <p class="text-xs text-gray-600">认为多数人支持的就是正确的</p>
+                        </div>
+                        <div class="fallacy-card p-4 rounded-lg">
+                            <h5 class="font-bold text-red-800 text-sm mb-1">虚假两难</h5>
+                            <p class="text-xs text-gray-600">只提供两种极端选择，忽略其他可能</p>
+                        </div>
+                        <div class="fallacy-card p-4 rounded-lg">
+                            <h5 class="font-bold text-red-800 text-sm mb-1">循环论证</h5>
+                            <p class="text-xs text-gray-600">用结论本身来证明结论</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 6 -->
+        <section class="bg-white rounded-2xl shadow-lg p-8 card-hover">
+            <div class="flex items-start gap-6">
+                <div class="step-number">6</div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">证据的效力如何？</h3>
+                    <p class="text-gray-600 mb-6">需仔细评估支撑理由的各种证据的可靠性和有效性。</p>
+                    
+                    <div class="space-y-3">
+                        <div class="evidence-card p-4 rounded-lg">
+                            <h5 class="font-bold text-green-800 text-sm">直觉 / 个人经历 / 典型案例</h5>
+                            <p class="text-xs text-gray-600 mt-1">可能存在以偏概全、幸存者偏差、缺乏代表性等问题</p>
+                        </div>
+                        <div class="evidence-card p-4 rounded-lg">
+                            <h5 class="font-bold text-green-800 text-sm">当事人证词 / 专家意见</h5>
+                            <p class="text-xs text-gray-600 mt-1">可能受个人兴趣、利益关联或专业领域限制的影响</p>
+                        </div>
+                        <div class="evidence-card p-4 rounded-lg">
+                            <h5 class="font-bold text-green-800 text-sm">个人观察 / 研究报告 / 类比</h5>
+                            <p class="text-xs text-gray-600 mt-1">可能受观察者偏见过滤；需考察研究方法科学性；类比事物相似点是否本质相关</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 7 -->
+        <section class="bg-white rounded-2xl shadow-lg p-8 card-hover">
+            <div class="flex items-start gap-6">
+                <div class="step-number">7</div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">有没有替代原因？</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">对于某个现象或结果，除了作者给出的原因，很可能存在其他合理的解释。</p>
+                    <div class="flex gap-4">
+                        <div class="flex-1 bg-orange-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl mb-2">↔️</div>
+                            <p class="text-sm font-bold text-orange-900">相关性 ≠ 因果性</p>
+                        </div>
+                        <div class="flex-1 bg-orange-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl mb-2">⏱️</div>
+                            <p class="text-sm font-bold text-orange-900">警惕事后归因</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 8 -->
+        <section class="bg-white rounded-2xl shadow-lg p-8 card-hover">
+            <div class="flex items-start gap-6">
+                <div class="step-number">8</div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">数据有没有欺骗性？</h3>
+                    <p class="text-gray-600 mb-6">统计数据可能通过以下方式产生误导：</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="bg-gray-100 p-3 rounded text-center text-sm text-gray-700">选择性呈现</div>
+                        <div class="bg-gray-100 p-3 rounded text-center text-sm text-gray-700">混淆平均值</div>
+                        <div class="bg-gray-100 p-3 rounded text-center text-sm text-gray-700">忽略基数</div>
+                        <div class="bg-gray-100 p-3 rounded text-center text-sm text-gray-700">只展绝对值</div>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-500 italic">看到数据时，务必追问其来源、统计方法和上下文。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 9 -->
+        <section class="bg-white rounded-2xl shadow-lg p-8 card-hover">
+            <div class="flex items-start gap-6">
+                <div class="step-number">9</div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">有什么重要信息被省略了？</h3>
+                    <p class="text-gray-600 leading-relaxed">任何论证都可能有意或无意地省略掉一些关键信息，如不利的证据、不同的价值观视角、论证方法的局限等。批判性思考者需要主动思考<span class="font-bold text-indigo-600">"作者还有什么没告诉我？"</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 10 -->
+        <section class="bg-white rounded-2xl shadow-lg p-8 card-hover border-2 border-indigo-100">
+            <div class="flex items-start gap-6">
+                <div class="step-number">10</div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">能得出哪些合理的结论？</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">经过以上分析，很多问题并非只有"是或否"的二分答案。在给定的理由和假设下，可能得出多个合理的结论。</p>
+                    <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-xl border border-indigo-200">
+                        <p class="text-indigo-900 font-medium text-center">
+                            批判性思维的最终目的不是驳倒对方，<br>
+                            而是在全面评估的基础上，形成自己更审慎、更合理的判断。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Section -->
+        <section class="bg-gradient-to-br from-gray-900 to-indigo-900 rounded-2xl shadow-xl p-8 md:p-12 text-white">
+            <h3 class="text-2xl font-bold serif mb-8 text-center">实践应用与态度</h3>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div class="bg-white/10 backdrop-blur rounded-lg p-6 border border-white/20">
+                    <h4 class="font-bold text-lg mb-4 flex items-center">
+                        <span class="mr-2">🛡️</span> 信息防身术
+                    </h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        掌握这套提问技能后，关键在于日常实践，将其内化为本能反应。在AI时代，这种能力尤为重要。
+                    </p>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-lg p-6 border border-white/20">
+                    <h4 class="font-bold text-lg mb-4 flex items-center">
+                        <span class="mr-2">💬</span> 有效对话技巧
+                    </h4>
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        <li>• 复述对方观点以确保理解正确</li>
+                        <li>• 询问对方需要什么证据才会改变观点</li>
+                        <li>• 寻找双方共同的价值观作为讨论基础</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center p-6 bg-white/5 rounded-xl border border-white/10">
+                <p class="text-lg font-medium text-indigo-200 mb-2">核心态度</p>
+                <p class="text-2xl font-bold">始终保持谦恭有礼，明确自己是来学习的，而非来辩论获胜的。</p>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center">
+            <div class="max-w-2xl mx-auto">
+                <h3 class="text-2xl font-bold serif text-gray-900 mb-6">终极目标</h3>
+                <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                    《学会提问》提供了一套强大而系统的工具箱，将抽象的批判性思维转化为具体的、可训练的提问技能。
+                </p>
+                <div class="inline-block px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full text-white font-bold text-lg shadow-lg">
+                    不是变成"杠精"，而是成为慎思明辨、理性自主的思考者
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 mt-12">
+        <div class="max-w-4xl mx-auto px-6 text-center text-sm">
+            <p class="mb-2">知识卡片 · 《学会提问》核心内容整理</p>
+            <p class="text-xs text-gray-600">尼尔·布朗 × 斯图尔特·基利 | 批判性思维系统指南</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll progress indicator
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scrollBar").style.width = scrolled + "%";
+        };
+    </script>
+
+</body>
+</html>
